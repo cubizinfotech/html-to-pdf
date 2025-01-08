@@ -33,9 +33,10 @@ app.post('/html-to-pdf', async (req, res) => {
     try {
         const browser = await puppeteer.launch({
             headless: true,
-            executablePath: '/usr/bin/google-chrome-stable',
+            executablePath: 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', // Adjust the path if necessary
             args: ['--no-sandbox', '--disable-setuid-sandbox'],
         });
+        
 
         const page = await browser.newPage();
 
