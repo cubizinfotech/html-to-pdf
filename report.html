@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- CSRF Token -->
+        <meta name="csrf-token" content>
+
+        <title>TARASVAT Industrial Electronics</title>
+        <link rel="icon" href="http://localhost/assets/logo.png">
+
+        <!-- Scripts -->
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script
+            src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+        <!-- Fonts -->
+        <link rel="dns-prefetch" href="//fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css?family=Nunito"
+            rel="stylesheet">
+
+        <!-- Styles -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+            rel="stylesheet">
+
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: Arial, sans-serif;
+            }
+
+            .page {
+                width: 210mm;
+                /* height: 297mm; */
+                display: flex;
+                flex-direction: column;
+                box-sizing: border-box;
+                page-break-after: always;
+            }
+
+            .title {
+                text-align: center;
+                font-size: 24px;
+                font-weight: bold;
+                margin: 20px 0;
+            }
+
+            .chart-container {
+                width: 48%;
+                height: 500px;
+                padding: 10px;
+                box-sizing: border-box;
+                margin: 1%;
+                float: left;
+                border: 1px solid #ccc;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+
+            .charts-wrapper {
+                display: flex;
+                flex-wrap: wrap;
+                width: 100%;
+                box-sizing: border-box;
+                justify-content: space-between;
+            }
+
+            /* Clear the float for the last container */
+            .clear {
+                clear: both;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="container justify-content-center" style="display: grid;">
+            <div class="page">
+                <div class="title">N1 (Daily)</div>
+                <div class="charts-wrapper">
+                    <!-- Chart 1 and 2 are overridden by chart 3 and 4 -->
+                    <div class="chart-container" id="speed_N1"></div>
+                    <div class="chart-container" id="efficiency_N1"></div>
+                    <div class="chart-container" id="no_of_stoppage_N1"></div>
+                    <div class="chart-container" id="shift_pick_N1"></div>
+                </div>
+            </div>
+            <div class="page">
+                <div class="title">N2 (Daily)</div>
+                <div class="charts-wrapper">
+                    <!-- Chart 1 and 2 are overridden by chart 3 and 4 -->
+                    <div class="chart-container" id="speed_N2"></div>
+                    <div class="chart-container" id="efficiency_N2"></div>
+                    <div class="chart-container" id="no_of_stoppage_N2"></div>
+                    <div class="chart-container" id="shift_pick_N2"></div>
+                </div>
+            </div>
+            <div class="page">
+                <div class="title">N3 (Daily)</div>
+                <div class="charts-wrapper">
+                    <!-- Chart 1 and 2 are overridden by chart 3 and 4 -->
+                    <div class="chart-container" id="speed_N3"></div>
+                    <div class="chart-container" id="efficiency_N3"></div>
+                    <div class="chart-container" id="no_of_stoppage_N3"></div>
+                    <div class="chart-container" id="shift_pick_N3"></div>
+                </div>
+            </div>
+            <div class="page">
+                <div class="title">N4 (Daily)</div>
+                <div class="charts-wrapper">
+                    <!-- Chart 1 and 2 are overridden by chart 3 and 4 -->
+                    <div class="chart-container" id="speed_N4"></div>
+                    <div class="chart-container" id="efficiency_N4"></div>
+                    <div class="chart-container" id="no_of_stoppage_N4"></div>
+                    <div class="chart-container" id="shift_pick_N4"></div>
+                </div>
+            </div>
+            <div class="page">
+                <div class="title">N5 (Daily)</div>
+                <div class="charts-wrapper">
+                    <!-- Chart 1 and 2 are overridden by chart 3 and 4 -->
+                    <div class="chart-container" id="speed_N5"></div>
+                    <div class="chart-container" id="efficiency_N5"></div>
+                    <div class="chart-container" id="no_of_stoppage_N5"></div>
+                    <div class="chart-container" id="shift_pick_N5"></div>
+                </div>
+            </div>
+            <div class="page">
+                <div class="title">N6 (Daily)</div>
+                <div class="charts-wrapper">
+                    <!-- Chart 1 and 2 are overridden by chart 3 and 4 -->
+                    <div class="chart-container" id="speed_N6"></div>
+                    <div class="chart-container" id="efficiency_N6"></div>
+                    <div class="chart-container" id="no_of_stoppage_N6"></div>
+                    <div class="chart-container" id="shift_pick_N6"></div>
+                </div>
+            </div>
+            <div class="page">
+                <div class="title">N7 (Daily)</div>
+                <div class="charts-wrapper">
+                    <!-- Chart 1 and 2 are overridden by chart 3 and 4 -->
+                    <div class="chart-container" id="speed_N7"></div>
+                    <div class="chart-container" id="efficiency_N7"></div>
+                    <div class="chart-container" id="no_of_stoppage_N7"></div>
+                    <div class="chart-container" id="shift_pick_N7"></div>
+                </div>
+            </div>
+            <div class="page">
+                <div class="title">N8 (Daily)</div>
+                <div class="charts-wrapper">
+                    <!-- Chart 1 and 2 are overridden by chart 3 and 4 -->
+                    <div class="chart-container" id="speed_N8"></div>
+                    <div class="chart-container" id="efficiency_N8"></div>
+                    <div class="chart-container" id="no_of_stoppage_N8"></div>
+                    <div class="chart-container" id="shift_pick_N8"></div>
+                </div>
+            </div>
+            <div class="page">
+                <div class="title">N9 (Daily)</div>
+                <div class="charts-wrapper">
+                    <!-- Chart 1 and 2 are overridden by chart 3 and 4 -->
+                    <div class="chart-container" id="speed_N9"></div>
+                    <div class="chart-container" id="efficiency_N9"></div>
+                    <div class="chart-container" id="no_of_stoppage_N9"></div>
+                    <div class="chart-container" id="shift_pick_N9"></div>
+                </div>
+            </div>
+            <div class="page">
+                <div class="title">N10 (Daily)</div>
+                <div class="charts-wrapper">
+                    <!-- Chart 1 and 2 are overridden by chart 3 and 4 -->
+                    <div class="chart-container" id="speed_N10"></div>
+                    <div class="chart-container" id="efficiency_N10"></div>
+                    <div class="chart-container" id="no_of_stoppage_N10"></div>
+                    <div class="chart-container" id="shift_pick_N10"></div>
+                </div>
+            </div>
+            <div class="page">
+                <div class="title">N11 (Daily)</div>
+                <div class="charts-wrapper">
+                    <!-- Chart 1 and 2 are overridden by chart 3 and 4 -->
+                    <div class="chart-container" id="speed_N11"></div>
+                    <div class="chart-container" id="efficiency_N11"></div>
+                    <div class="chart-container" id="no_of_stoppage_N11"></div>
+                    <div class="chart-container" id="shift_pick_N11"></div>
+                </div>
+            </div>
+            <div class="page">
+                <div class="title">N12 (Daily)</div>
+                <div class="charts-wrapper">
+                    <!-- Chart 1 and 2 are overridden by chart 3 and 4 -->
+                    <div class="chart-container" id="speed_N12"></div>
+                    <div class="chart-container" id="efficiency_N12"></div>
+                    <div class="chart-container" id="no_of_stoppage_N12"></div>
+                    <div class="chart-container" id="shift_pick_N12"></div>
+                </div>
+            </div>
+            <div class="page">
+                <div class="title">N13 (Daily)</div>
+                <div class="charts-wrapper">
+                    <!-- Chart 1 and 2 are overridden by chart 3 and 4 -->
+                    <div class="chart-container" id="speed_N13"></div>
+                    <div class="chart-container" id="efficiency_N13"></div>
+                    <div class="chart-container" id="no_of_stoppage_N13"></div>
+                    <div class="chart-container" id="shift_pick_N13"></div>
+                </div>
+            </div>
+            <div class="page">
+                <div class="title">N14 (Daily)</div>
+                <div class="charts-wrapper">
+                    <!-- Chart 1 and 2 are overridden by chart 3 and 4 -->
+                    <div class="chart-container" id="speed_N14"></div>
+                    <div class="chart-container" id="efficiency_N14"></div>
+                    <div class="chart-container" id="no_of_stoppage_N14"></div>
+                    <div class="chart-container" id="shift_pick_N14"></div>
+                </div>
+            </div>
+            <div class="page">
+                <div class="title">N15 (Daily)</div>
+                <div class="charts-wrapper">
+                    <!-- Chart 1 and 2 are overridden by chart 3 and 4 -->
+                    <div class="chart-container" id="speed_N15"></div>
+                    <div class="chart-container" id="efficiency_N15"></div>
+                    <div class="chart-container" id="no_of_stoppage_N15"></div>
+                    <div class="chart-container" id="shift_pick_N15"></div>
+                </div>
+            </div>
+            <div class="page">
+                <div class="title">N16 (Daily)</div>
+                <div class="charts-wrapper">
+                    <!-- Chart 1 and 2 are overridden by chart 3 and 4 -->
+                    <div class="chart-container" id="speed_N16"></div>
+                    <div class="chart-container" id="efficiency_N16"></div>
+                    <div class="chart-container" id="no_of_stoppage_N16"></div>
+                    <div class="chart-container" id="shift_pick_N16"></div>
+                </div>
+            </div>
+            <div class="page">
+                <div class="title">N17 (Daily)</div>
+                <div class="charts-wrapper">
+                    <!-- Chart 1 and 2 are overridden by chart 3 and 4 -->
+                    <div class="chart-container" id="speed_N17"></div>
+                    <div class="chart-container" id="efficiency_N17"></div>
+                    <div class="chart-container" id="no_of_stoppage_N17"></div>
+                    <div class="chart-container" id="shift_pick_N17"></div>
+                </div>
+            </div>
+            <div class="page">
+                <div class="title">N18 (Daily)</div>
+                <div class="charts-wrapper">
+                    <!-- Chart 1 and 2 are overridden by chart 3 and 4 -->
+                    <div class="chart-container" id="speed_N18"></div>
+                    <div class="chart-container" id="efficiency_N18"></div>
+                    <div class="chart-container" id="no_of_stoppage_N18"></div>
+                    <div class="chart-container" id="shift_pick_N18"></div>
+                </div>
+            </div>
+            <div class="page">
+                <div class="title">N19 (Daily)</div>
+                <div class="charts-wrapper">
+                    <!-- Chart 1 and 2 are overridden by chart 3 and 4 -->
+                    <div class="chart-container" id="speed_N19"></div>
+                    <div class="chart-container" id="efficiency_N19"></div>
+                    <div class="chart-container" id="no_of_stoppage_N19"></div>
+                    <div class="chart-container" id="shift_pick_N19"></div>
+                </div>
+            </div>
+            <div class="page">
+                <div class="title">N20 (Daily)</div>
+                <div class="charts-wrapper">
+                    <!-- Chart 1 and 2 are overridden by chart 3 and 4 -->
+                    <div class="chart-container" id="speed_N20"></div>
+                    <div class="chart-container" id="efficiency_N20"></div>
+                    <div class="chart-container" id="no_of_stoppage_N20"></div>
+                    <div class="chart-container" id="shift_pick_N20"></div>
+                </div>
+            </div>
+            <div class="page">
+                <div class="title">N21 (Daily)</div>
+                <div class="charts-wrapper">
+                    <!-- Chart 1 and 2 are overridden by chart 3 and 4 -->
+                    <div class="chart-container" id="speed_N21"></div>
+                    <div class="chart-container" id="efficiency_N21"></div>
+                    <div class="chart-container" id="no_of_stoppage_N21"></div>
+                    <div class="chart-container" id="shift_pick_N21"></div>
+                </div>
+            </div>
+            <div class="page">
+                <div class="title">N22 (Daily)</div>
+                <div class="charts-wrapper">
+                    <!-- Chart 1 and 2 are overridden by chart 3 and 4 -->
+                    <div class="chart-container" id="speed_N22"></div>
+                    <div class="chart-container" id="efficiency_N22"></div>
+                    <div class="chart-container" id="no_of_stoppage_N22"></div>
+                    <div class="chart-container" id="shift_pick_N22"></div>
+                </div>
+            </div>
+            <div class="page">
+                <div class="title">N23 (Daily)</div>
+                <div class="charts-wrapper">
+                    <!-- Chart 1 and 2 are overridden by chart 3 and 4 -->
+                    <div class="chart-container" id="speed_N23"></div>
+                    <div class="chart-container" id="efficiency_N23"></div>
+                    <div class="chart-container" id="no_of_stoppage_N23"></div>
+                    <div class="chart-container" id="shift_pick_N23"></div>
+                </div>
+            </div>
+            <div class="page">
+                <div class="title">N24 (Daily)</div>
+                <div class="charts-wrapper">
+                    <!-- Chart 1 and 2 are overridden by chart 3 and 4 -->
+                    <div class="chart-container" id="speed_N24"></div>
+                    <div class="chart-container" id="efficiency_N24"></div>
+                    <div class="chart-container" id="no_of_stoppage_N24"></div>
+                    <div class="chart-container" id="shift_pick_N24"></div>
+                </div>
+            </div>
+            <div class="page">
+                <div class="title">N25 (Daily)</div>
+                <div class="charts-wrapper">
+                    <!-- Chart 1 and 2 are overridden by chart 3 and 4 -->
+                    <div class="chart-container" id="speed_N25"></div>
+                    <div class="chart-container" id="efficiency_N25"></div>
+                    <div class="chart-container" id="no_of_stoppage_N25"></div>
+                    <div class="chart-container" id="shift_pick_N25"></div>
+                </div>
+            </div>
+            <div class="page">
+                <div class="title">N26 (Daily)</div>
+                <div class="charts-wrapper">
+                    <!-- Chart 1 and 2 are overridden by chart 3 and 4 -->
+                    <div class="chart-container" id="speed_N26"></div>
+                    <div class="chart-container" id="efficiency_N26"></div>
+                    <div class="chart-container" id="no_of_stoppage_N26"></div>
+                    <div class="chart-container" id="shift_pick_N26"></div>
+                </div>
+            </div>
+            <div class="page">
+                <div class="title">N27 (Daily)</div>
+                <div class="charts-wrapper">
+                    <!-- Chart 1 and 2 are overridden by chart 3 and 4 -->
+                    <div class="chart-container" id="speed_N27"></div>
+                    <div class="chart-container" id="efficiency_N27"></div>
+                    <div class="chart-container" id="no_of_stoppage_N27"></div>
+                    <div class="chart-container" id="shift_pick_N27"></div>
+                </div>
+            </div>
+            <div class="page">
+                <div class="title">N28 (Daily)</div>
+                <div class="charts-wrapper">
+                    <!-- Chart 1 and 2 are overridden by chart 3 and 4 -->
+                    <div class="chart-container" id="speed_N28"></div>
+                    <div class="chart-container" id="efficiency_N28"></div>
+                    <div class="chart-container" id="no_of_stoppage_N28"></div>
+                    <div class="chart-container" id="shift_pick_N28"></div>
+                </div>
+            </div>
+            <div class="page">
+                <div class="title">N29 (Daily)</div>
+                <div class="charts-wrapper">
+                    <!-- Chart 1 and 2 are overridden by chart 3 and 4 -->
+                    <div class="chart-container" id="speed_N29"></div>
+                    <div class="chart-container" id="efficiency_N29"></div>
+                    <div class="chart-container" id="no_of_stoppage_N29"></div>
+                    <div class="chart-container" id="shift_pick_N29"></div>
+                </div>
+            </div>
+            <div class="page">
+                <div class="title">N30 (Daily)</div>
+                <div class="charts-wrapper">
+                    <!-- Chart 1 and 2 are overridden by chart 3 and 4 -->
+                    <div class="chart-container" id="speed_N30"></div>
+                    <div class="chart-container" id="efficiency_N30"></div>
+                    <div class="chart-container" id="no_of_stoppage_N30"></div>
+                    <div class="chart-container" id="shift_pick_N30"></div>
+                </div>
+            </div>
+            <div class="page">
+                <div class="title">N31 (Daily)</div>
+                <div class="charts-wrapper">
+                    <!-- Chart 1 and 2 are overridden by chart 3 and 4 -->
+                    <div class="chart-container" id="speed_N31"></div>
+                    <div class="chart-container" id="efficiency_N31"></div>
+                    <div class="chart-container" id="no_of_stoppage_N31"></div>
+                    <div class="chart-container" id="shift_pick_N31"></div>
+                </div>
+            </div>
+            <div class="page">
+                <div class="title">N32 (Daily)</div>
+                <div class="charts-wrapper">
+                    <!-- Chart 1 and 2 are overridden by chart 3 and 4 -->
+                    <div class="chart-container" id="speed_N32"></div>
+                    <div class="chart-container" id="efficiency_N32"></div>
+                    <div class="chart-container" id="no_of_stoppage_N32"></div>
+                    <div class="chart-container" id="shift_pick_N32"></div>
+                </div>
+            </div>
+        </div>
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+        <script
+            src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+        <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+        <script>
+            window.onload = function() {
+                // Loop through each node and create a chart for each metric
+                                    createChart("speed_N1", "Speed Report", [{"label":"N1:M1","previous":450,"current":150},{"label":"N1:M2","previous":640,"current":160},{"label":"N1:M3","previous":170,"current":170},{"label":"N1:M4","previous":540,"current":180}]);
+                    createChart("efficiency_N1", "Efficiency Report", [{"label":"N1:M1","previous":313.220000000000027284841053187847137451171875,"current":79.3700000000000045474735088646411895751953125},{"label":"N1:M2","previous":336.6000000000000227373675443232059478759765625,"current":87.4200000000000017053025658242404460906982421875},{"label":"N1:M3","previous":247.710000000000007958078640513122081756591796875,"current":74.7699999999999960209606797434389591217041015625},{"label":"N1:M4","previous":313.220000000000027284841053187847137451171875,"current":79.3700000000000045474735088646411895751953125}]);
+                    createChart("no_of_stoppage_N1", "Stoppage Report", [{"label":"N1:M1","previous":8,"current":17},{"label":"N1:M2","previous":5,"current":12},{"label":"N1:M3","previous":5,"current":11},{"label":"N1:M4","previous":7,"current":15}]);
+                    createChart("shift_pick_N1", "Total Pick Report", [{"label":"N1:M1","previous":1150,"current":1550},{"label":"N1:M2","previous":1350,"current":1750},{"label":"N1:M3","previous":1000,"current":1250},{"label":"N1:M4","previous":1050,"current":1450}]);
+                                    createChart("speed_N2", "Speed Report", [{"label":"N2:M1","previous":450,"current":150},{"label":"N2:M2","previous":640,"current":160},{"label":"N2:M3","previous":680,"current":0},{"label":"N2:M4","previous":540,"current":360}]);
+                    createChart("efficiency_N2", "Efficiency Report", [{"label":"N2:M1","previous":442.1499999999999772626324556767940521240234375,"current":102.3900000000000005684341886080801486968994140625},{"label":"N2:M2","previous":329.8899999999999863575794734060764312744140625,"current":64.400000000000005684341886080801486968994140625},{"label":"N2:M3","previous":403.26999999999998181010596454143524169921875,"current":97.7900000000000062527760746888816356658935546875},{"label":"N2:M4","previous":295.6000000000000227373675443232059478759765625,"current":82.81000000000000227373675443232059478759765625}]);
+                    createChart("no_of_stoppage_N2", "Stoppage Report", [{"label":"N2:M1","previous":5,"current":7},{"label":"N2:M2","previous":5,"current":10},{"label":"N2:M3","previous":4,"current":8},{"label":"N2:M4","previous":4,"current":10}]);
+                    createChart("shift_pick_N2", "Total Pick Report", [{"label":"N2:M1","previous":1450,"current":2050},{"label":"N2:M2","previous":950,"current":1150},{"label":"N2:M3","previous":1450,"current":2000},{"label":"N2:M4","previous":1300,"current":1600}]);
+                                    createChart("speed_N3", "Speed Report", [{"label":"N3:M1","previous":600,"current":300},{"label":"N3:M2","previous":640,"current":160},{"label":"N3:M3","previous":510,"current":170},{"label":"N3:M4","previous":720,"current":360}]);
+                    createChart("efficiency_N3", "Efficiency Report", [{"label":"N3:M1","previous":390.990000000000009094947017729282379150390625,"current":87.4200000000000017053025658242404460906982421875},{"label":"N3:M2","previous":423.3799999999999954525264911353588104248046875,"current":102.3900000000000005684341886080801486968994140625},{"label":"N3:M3","previous":292.1499999999999772626324556767940521240234375,"current":82.81000000000000227373675443232059478759765625},{"label":"N3:M4","previous":317.82999999999998408384271897375583648681640625,"current":82.81000000000000227373675443232059478759765625}]);
+                    createChart("no_of_stoppage_N3", "Stoppage Report", [{"label":"N3:M1","previous":6,"current":8},{"label":"N3:M2","previous":2,"current":7},{"label":"N3:M3","previous":6,"current":12},{"label":"N3:M4","previous":7,"current":14}]);
+                    createChart("shift_pick_N3", "Total Pick Report", [{"label":"N3:M1","previous":1450,"current":1900},{"label":"N3:M2","previous":1600,"current":2150},{"label":"N3:M3","previous":1150,"current":1500},{"label":"N3:M4","previous":1250,"current":1600}]);
+                                    createChart("speed_N4", "Speed Report", [{"label":"N4:M1","previous":450,"current":0},{"label":"N4:M2","previous":640,"current":320},{"label":"N4:M3","previous":510,"current":170},{"label":"N4:M4","previous":720,"current":0}]);
+                    createChart("efficiency_N4", "Efficiency Report", [{"label":"N4:M1","previous":370.8799999999999954525264911353588104248046875,"current":74.7699999999999960209606797434389591217041015625},{"label":"N4:M2","previous":328.93000000000000682121026329696178436279296875,"current":96.6299999999999954525264911353588104248046875},{"label":"N4:M3","previous":418.779999999999972715158946812152862548828125,"current":87.4200000000000017053025658242404460906982421875},{"label":"N4:M4","previous":336.6000000000000227373675443232059478759765625,"current":83.969999999999998863131622783839702606201171875}]);
+                    createChart("no_of_stoppage_N4", "Stoppage Report", [{"label":"N4:M1","previous":7,"current":10},{"label":"N4:M2","previous":5,"current":8},{"label":"N4:M3","previous":6,"current":6},{"label":"N4:M4","previous":4,"current":8}]);
+                    createChart("shift_pick_N4", "Total Pick Report", [{"label":"N4:M1","previous":950,"current":1300},{"label":"N4:M2","previous":1450,"current":1950},{"label":"N4:M3","previous":1250,"current":1700},{"label":"N4:M4","previous":1200,"current":1550}]);
+                                    createChart("speed_N5", "Speed Report", [{"label":"N5:M1","previous":450,"current":150},{"label":"N5:M2","previous":640,"current":320},{"label":"N5:M3","previous":170,"current":0},{"label":"N5:M4","previous":540,"current":0}]);
+                    createChart("efficiency_N5", "Efficiency Report", [{"label":"N5:M1","previous":292.1499999999999772626324556767940521240234375,"current":82.81000000000000227373675443232059478759765625},{"label":"N5:M2","previous":424.32999999999998408384271897375583648681640625,"current":87.4200000000000017053025658242404460906982421875},{"label":"N5:M3","previous":209.770000000000010231815394945442676544189453125,"current":70.159999999999996589394868351519107818603515625},{"label":"N5:M4","previous":228.93000000000000682121026329696178436279296875,"current":79.3700000000000045474735088646411895751953125}]);
+                    createChart("no_of_stoppage_N5", "Stoppage Report", [{"label":"N5:M1","previous":7,"current":16},{"label":"N5:M2","previous":5,"current":12},{"label":"N5:M3","previous":5,"current":12},{"label":"N5:M4","previous":5,"current":14}]);
+                    createChart("shift_pick_N5", "Total Pick Report", [{"label":"N5:M1","previous":1050,"current":1400},{"label":"N5:M2","previous":1350,"current":1800},{"label":"N5:M3","previous":850,"current":1150},{"label":"N5:M4","previous":950,"current":1300}]);
+                                    createChart("speed_N6", "Speed Report", [{"label":"N6:M1","previous":600,"current":0},{"label":"N6:M2","previous":320,"current":320},{"label":"N6:M3","previous":510,"current":0},{"label":"N6:M4","previous":900,"current":360}]);
+                    createChart("efficiency_N6", "Efficiency Report", [{"label":"N6:M1","previous":352.1100000000000136424205265939235687255859375,"current":97.7900000000000062527760746888816356658935546875},{"label":"N6:M2","previous":281.04000000000002046363078989088535308837890625,"current":69.0100000000000051159076974727213382720947265625},{"label":"N6:M3","previous":424.32999999999998408384271897375583648681640625,"current":93.18000000000000682121026329696178436279296875},{"label":"N6:M4","previous":362.26999999999998181010596454143524169921875,"current":82.81000000000000227373675443232059478759765625}]);
+                    createChart("no_of_stoppage_N6", "Stoppage Report", [{"label":"N6:M1","previous":5,"current":8},{"label":"N6:M2","previous":4,"current":8},{"label":"N6:M3","previous":5,"current":8},{"label":"N6:M4","previous":3,"current":10}]);
+                    createChart("shift_pick_N6", "Total Pick Report", [{"label":"N6:M1","previous":1450,"current":2050},{"label":"N6:M2","previous":850,"current":1050},{"label":"N6:M3","previous":1450,"current":2000},{"label":"N6:M4","previous":1200,"current":1500}]);
+                                    createChart("speed_N7", "Speed Report", [{"label":"N7:M1","previous":750,"current":300},{"label":"N7:M2","previous":800,"current":0},{"label":"N7:M3","previous":510,"current":170},{"label":"N7:M4","previous":720,"current":360}]);
+                    createChart("efficiency_N7", "Efficiency Report", [{"label":"N7:M1","previous":434.490000000000009094947017729282379150390625,"current":92.030000000000001136868377216160297393798828125},{"label":"N7:M2","previous":412.26999999999998181010596454143524169921875,"current":97.7900000000000062527760746888816356658935546875},{"label":"N7:M3","previous":263.220000000000027284841053187847137451171875,"current":79.3700000000000045474735088646411895751953125},{"label":"N7:M4","previous":358.81999999999999317878973670303821563720703125,"current":82.81000000000000227373675443232059478759765625}]);
+                    createChart("no_of_stoppage_N7", "Stoppage Report", [{"label":"N7:M1","previous":5,"current":6},{"label":"N7:M2","previous":3,"current":8},{"label":"N7:M3","previous":6,"current":13},{"label":"N7:M4","previous":8,"current":14}]);
+                    createChart("shift_pick_N7", "Total Pick Report", [{"label":"N7:M1","previous":1350,"current":1800},{"label":"N7:M2","previous":1500,"current":2000},{"label":"N7:M3","previous":1150,"current":1550},{"label":"N7:M4","previous":1300,"current":1600}]);
+                                    createChart("speed_N8", "Speed Report", [{"label":"N8:M1","previous":0,"current":0},{"label":"N8:M2","previous":960,"current":320},{"label":"N8:M3","previous":510,"current":170},{"label":"N8:M4","previous":360,"current":0}]);
+                    createChart("efficiency_N8", "Efficiency Report", [{"label":"N8:M1","previous":287.54000000000002046363078989088535308837890625,"current":74.7699999999999960209606797434389591217041015625},{"label":"N8:M2","previous":384.5,"current":96.6299999999999954525264911353588104248046875},{"label":"N8:M3","previous":406.720000000000027284841053187847137451171875,"current":88.5799999999999982946974341757595539093017578125},{"label":"N8:M4","previous":354.20999999999997953636921010911464691162109375,"current":79.3700000000000045474735088646411895751953125}]);
+                    createChart("no_of_stoppage_N8", "Stoppage Report", [{"label":"N8:M1","previous":5,"current":8},{"label":"N8:M2","previous":5,"current":8},{"label":"N8:M3","previous":4,"current":5},{"label":"N8:M4","previous":4,"current":8}]);
+                    createChart("shift_pick_N8", "Total Pick Report", [{"label":"N8:M1","previous":800,"current":1200},{"label":"N8:M2","previous":1500,"current":1950},{"label":"N8:M3","previous":1150,"current":1600},{"label":"N8:M4","previous":1050,"current":1450}]);
+                                    createChart("speed_N9", "Speed Report", [{"label":"N9:M1","previous":450,"current":150},{"label":"N9:M2","previous":320,"current":160},{"label":"N9:M3","previous":340,"current":0},{"label":"N9:M4","previous":540,"current":0}]);
+                    createChart("efficiency_N9", "Efficiency Report", [{"label":"N9:M1","previous":279.8899999999999863575794734060764312744140625,"current":10.4000000000000003552713678800500929355621337890625},{"label":"N9:M2","previous":292.1499999999999772626324556767940521240234375,"current":12.7200000000000006394884621840901672840118408203125},{"label":"N9:M3","previous":279.8899999999999863575794734060764312744140625,"current":8.089999999999999857891452847979962825775146484375},{"label":"N9:M4","previous":281.05000000000001136868377216160297393798828125,"current":9.25}]);
+                    createChart("no_of_stoppage_N9", "Stoppage Report", [{"label":"N9:M1","previous":7,"current":8},{"label":"N9:M2","previous":5,"current":5},{"label":"N9:M3","previous":4,"current":5},{"label":"N9:M4","previous":6,"current":7}]);
+                    createChart("shift_pick_N9", "Total Pick Report", [{"label":"N9:M1","previous":1050,"current":1450},{"label":"N9:M2","previous":1250,"current":1700},{"label":"N9:M3","previous":700,"current":1050},{"label":"N9:M4","previous":1000,"current":1250}]);
+                                    createChart("speed_N10", "Speed Report", [{"label":"N10:M1","previous":450,"current":0},{"label":"N10:M2","previous":640,"current":160},{"label":"N10:M3","previous":340,"current":0},{"label":"N10:M4","previous":540,"current":180}]);
+                    createChart("efficiency_N10", "Efficiency Report", [{"label":"N10:M1","previous":340.05000000000001136868377216160297393798828125,"current":15.0299999999999993605115378159098327159881591796875},{"label":"N10:M2","previous":235.43999999999999772626324556767940521240234375,"current":6.94000000000000039079850466805510222911834716796875},{"label":"N10:M3","previous":331.04000000000002046363078989088535308837890625,"current":13.8699999999999992184029906638897955417633056640625},{"label":"N10:M4","previous":319.93000000000000682121026329696178436279296875,"current":10.4000000000000003552713678800500929355621337890625}]);
+                    createChart("no_of_stoppage_N10", "Stoppage Report", [{"label":"N10:M1","previous":2,"current":3},{"label":"N10:M2","previous":5,"current":4},{"label":"N10:M3","previous":4,"current":3},{"label":"N10:M4","previous":4,"current":5}]);
+                    createChart("shift_pick_N10", "Total Pick Report", [{"label":"N10:M1","previous":1350,"current":1900},{"label":"N10:M2","previous":850,"current":1100},{"label":"N10:M3","previous":1350,"current":1850},{"label":"N10:M4","previous":1100,"current":1400}]);
+                                    createChart("speed_N11", "Speed Report", [{"label":"N11:M1","previous":450,"current":150},{"label":"N11:M2","previous":480,"current":0},{"label":"N11:M3","previous":680,"current":0},{"label":"N11:M4","previous":360,"current":180}]);
+                    createChart("efficiency_N11", "Efficiency Report", [{"label":"N11:M1","previous":301.16000000000002501110429875552654266357421875,"current":88.5799999999999982946974341757595539093017578125},{"label":"N11:M2","previous":381.04000000000002046363078989088535308837890625,"current":13.8699999999999992184029906638897955417633056640625},{"label":"N11:M3","previous":295.6000000000000227373675443232059478759765625,"current":79.3700000000000045474735088646411895751953125},{"label":"N11:M4","previous":370.8700000000000045474735088646411895751953125,"current":79.3700000000000045474735088646411895751953125}]);
+                    createChart("no_of_stoppage_N11", "Stoppage Report", [{"label":"N11:M1","previous":4,"current":7},{"label":"N11:M2","previous":4,"current":4},{"label":"N11:M3","previous":4,"current":12},{"label":"N11:M4","previous":7,"current":13}]);
+                    createChart("shift_pick_N11", "Total Pick Report", [{"label":"N11:M1","previous":1400,"current":1800},{"label":"N11:M2","previous":1400,"current":1850},{"label":"N11:M3","previous":1050,"current":1400},{"label":"N11:M4","previous":1150,"current":1550}]);
+                                    createChart("speed_N12", "Speed Report", [{"label":"N12:M1","previous":300,"current":0},{"label":"N12:M2","previous":640,"current":160},{"label":"N12:M3","previous":680,"current":0},{"label":"N12:M4","previous":180,"current":0}]);
+                    createChart("efficiency_N12", "Efficiency Report", [{"label":"N12:M1","previous":226.43999999999999772626324556767940521240234375,"current":74.7699999999999960209606797434389591217041015625},{"label":"N12:M2","previous":401.16000000000002501110429875552654266357421875,"current":93.18000000000000682121026329696178436279296875},{"label":"N12:M3","previous":251.159999999999996589394868351519107818603515625,"current":83.969999999999998863131622783839702606201171875},{"label":"N12:M4","previous":259.759999999999990905052982270717620849609375,"current":79.3700000000000045474735088646411895751953125}]);
+                    createChart("no_of_stoppage_N12", "Stoppage Report", [{"label":"N12:M1","previous":4,"current":8},{"label":"N12:M2","previous":4,"current":9},{"label":"N12:M3","previous":3,"current":6},{"label":"N12:M4","previous":3,"current":6}]);
+                    createChart("shift_pick_N12", "Total Pick Report", [{"label":"N12:M1","previous":800,"current":1200},{"label":"N12:M2","previous":1400,"current":1850},{"label":"N12:M3","previous":1200,"current":1550},{"label":"N12:M4","previous":900,"current":1350}]);
+                                    createChart("speed_N13", "Speed Report", [{"label":"N13:M1","previous":450,"current":0},{"label":"N13:M2","previous":640,"current":0},{"label":"N13:M3","previous":170,"current":0},{"label":"N13:M4","previous":180,"current":0}]);
+                    createChart("efficiency_N13", "Efficiency Report", [{"label":"N13:M1","previous":228.93000000000000682121026329696178436279296875,"current":0},{"label":"N13:M2","previous":396.55000000000001136868377216160297393798828125,"current":0},{"label":"N13:M3","previous":197.710000000000007958078640513122081756591796875,"current":0},{"label":"N13:M4","previous":196.55000000000001136868377216160297393798828125,"current":0}]);
+                    createChart("no_of_stoppage_N13", "Stoppage Report", [{"label":"N13:M1","previous":5,"current":0},{"label":"N13:M2","previous":6,"current":0},{"label":"N13:M3","previous":5,"current":0},{"label":"N13:M4","previous":6,"current":0}]);
+                    createChart("shift_pick_N13", "Total Pick Report", [{"label":"N13:M1","previous":950,"current":1300},{"label":"N13:M2","previous":1250,"current":1700},{"label":"N13:M3","previous":750,"current":1000},{"label":"N13:M4","previous":850,"current":1150}]);
+                                    createChart("speed_N14", "Speed Report", [{"label":"N14:M1","previous":600,"current":0},{"label":"N14:M2","previous":480,"current":0},{"label":"N14:M3","previous":510,"current":0},{"label":"N14:M4","previous":360,"current":0}]);
+                    createChart("efficiency_N14", "Efficiency Report", [{"label":"N14:M1","previous":312.26999999999998181010596454143524169921875,"current":0},{"label":"N14:M2","previous":319.93000000000000682121026329696178436279296875,"current":0},{"label":"N14:M3","previous":385.43999999999999772626324556767940521240234375,"current":0},{"label":"N14:M4","previous":270.8700000000000045474735088646411895751953125,"current":0}]);
+                    createChart("no_of_stoppage_N14", "Stoppage Report", [{"label":"N14:M1","previous":3,"current":0},{"label":"N14:M2","previous":4,"current":0},{"label":"N14:M3","previous":5,"current":0},{"label":"N14:M4","previous":4,"current":0}]);
+                    createChart("shift_pick_N14", "Total Pick Report", [{"label":"N14:M1","previous":1400,"current":1850},{"label":"N14:M2","previous":750,"current":950},{"label":"N14:M3","previous":1350,"current":1850},{"label":"N14:M4","previous":950,"current":1300}]);
+                                    createChart("speed_N15", "Speed Report", [{"label":"N15:M1","previous":450,"current":150},{"label":"N15:M2","previous":480,"current":0},{"label":"N15:M3","previous":340,"current":0},{"label":"N15:M4","previous":540,"current":0}]);
+                    createChart("efficiency_N15", "Efficiency Report", [{"label":"N15:M1","previous":331.05000000000001136868377216160297393798828125,"current":87.4200000000000017053025658242404460906982421875},{"label":"N15:M2","previous":352.1100000000000136424205265939235687255859375,"current":0},{"label":"N15:M3","previous":247.710000000000007958078640513122081756591796875,"current":74.7699999999999960209606797434389591217041015625},{"label":"N15:M4","previous":274.31999999999999317878973670303821563720703125,"current":79.3700000000000045474735088646411895751953125}]);
+                    createChart("no_of_stoppage_N15", "Stoppage Report", [{"label":"N15:M1","previous":4,"current":8},{"label":"N15:M2","previous":5,"current":0},{"label":"N15:M3","previous":5,"current":12},{"label":"N15:M4","previous":4,"current":12}]);
+                    createChart("shift_pick_N15", "Total Pick Report", [{"label":"N15:M1","previous":1300,"current":1650},{"label":"N15:M2","previous":1250,"current":1750},{"label":"N15:M3","previous":1100,"current":1350},{"label":"N15:M4","previous":1000,"current":1450}]);
+                                    createChart("speed_N16", "Speed Report", [{"label":"N16:M1","previous":150,"current":0},{"label":"N16:M2","previous":640,"current":0},{"label":"N16:M3","previous":680,"current":0},{"label":"N16:M4","previous":540,"current":0}]);
+                    createChart("efficiency_N16", "Efficiency Report", [{"label":"N16:M1","previous":259.76999999999998181010596454143524169921875,"current":74.7699999999999960209606797434389591217041015625},{"label":"N16:M2","previous":301.16000000000002501110429875552654266357421875,"current":88.5799999999999982946974341757595539093017578125},{"label":"N16:M3","previous":273.3799999999999954525264911353588104248046875,"current":79.3700000000000045474735088646411895751953125},{"label":"N16:M4","previous":318.779999999999972715158946812152862548828125,"current":79.3700000000000045474735088646411895751953125}]);
+                    createChart("no_of_stoppage_N16", "Stoppage Report", [{"label":"N16:M1","previous":3,"current":8},{"label":"N16:M2","previous":4,"current":10},{"label":"N16:M3","previous":3,"current":6},{"label":"N16:M4","previous":3,"current":6}]);
+                    createChart("shift_pick_N16", "Total Pick Report", [{"label":"N16:M1","previous":800,"current":1200},{"label":"N16:M2","previous":1300,"current":1700},{"label":"N16:M3","previous":1100,"current":1400},{"label":"N16:M4","previous":900,"current":1350}]);
+                                    createChart("speed_N17", "Speed Report", [{"label":"N17:M1","previous":450,"current":0},{"label":"N17:M2","previous":160,"current":0},{"label":"N17:M3","previous":510,"current":0},{"label":"N17:M4","previous":540,"current":0}]);
+                    createChart("efficiency_N17", "Efficiency Report", [{"label":"N17:M1","previous":231.05000000000001136868377216160297393798828125,"current":0},{"label":"N17:M2","previous":264.3700000000000045474735088646411895751953125,"current":0},{"label":"N17:M3","previous":185.43999999999999772626324556767940521240234375,"current":0},{"label":"N17:M4","previous":253.270000000000010231815394945442676544189453125,"current":0}]);
+                    createChart("no_of_stoppage_N17", "Stoppage Report", [{"label":"N17:M1","previous":4,"current":0},{"label":"N17:M2","previous":5,"current":0},{"label":"N17:M3","previous":4,"current":0},{"label":"N17:M4","previous":5,"current":0}]);
+                    createChart("shift_pick_N17", "Total Pick Report", [{"label":"N17:M1","previous":1000,"current":1250},{"label":"N17:M2","previous":1150,"current":1550},{"label":"N17:M3","previous":750,"current":1000},{"label":"N17:M4","previous":750,"current":1000}]);
+                                    createChart("speed_N18", "Speed Report", [{"label":"N18:M1","previous":600,"current":0},{"label":"N18:M2","previous":160,"current":0},{"label":"N18:M3","previous":340,"current":0},{"label":"N18:M4","previous":540,"current":0}]);
+                    createChart("efficiency_N18", "Efficiency Report", [{"label":"N18:M1","previous":334.490000000000009094947017729282379150390625,"current":0},{"label":"N18:M2","previous":170.8700000000000045474735088646411895751953125,"current":0},{"label":"N18:M3","previous":356.70999999999997953636921010911464691162109375,"current":0},{"label":"N18:M4","previous":207.659999999999996589394868351519107818603515625,"current":0}]);
+                    createChart("no_of_stoppage_N18", "Stoppage Report", [{"label":"N18:M1","previous":2,"current":0},{"label":"N18:M2","previous":5,"current":0},{"label":"N18:M3","previous":3,"current":0},{"label":"N18:M4","previous":2,"current":0}]);
+                    createChart("shift_pick_N18", "Total Pick Report", [{"label":"N18:M1","previous":1300,"current":1700},{"label":"N18:M2","previous":750,"current":950},{"label":"N18:M3","previous":1250,"current":1700},{"label":"N18:M4","previous":800,"current":1200}]);
+                                    createChart("speed_N19", "Speed Report", [{"label":"N19:M1","previous":300,"current":150},{"label":"N19:M2","previous":480,"current":0},{"label":"N19:M3","previous":340,"current":170},{"label":"N19:M4","previous":540,"current":0}]);
+                    createChart("efficiency_N19", "Efficiency Report", [{"label":"N19:M1","previous":313.220000000000027284841053187847137451171875,"current":83.969999999999998863131622783839702606201171875},{"label":"N19:M2","previous":286.6000000000000227373675443232059478759765625,"current":0},{"label":"N19:M3","previous":232.259999999999990905052982270717620849609375,"current":116.9800000000000039790393202565610408782958984375},{"label":"N19:M4","previous":281.05000000000001136868377216160297393798828125,"current":79.3700000000000045474735088646411895751953125}]);
+                    createChart("no_of_stoppage_N19", "Stoppage Report", [{"label":"N19:M1","previous":6,"current":9},{"label":"N19:M2","previous":2,"current":0},{"label":"N19:M3","previous":5,"current":12},{"label":"N19:M4","previous":4,"current":12}]);
+                    createChart("shift_pick_N19", "Total Pick Report", [{"label":"N19:M1","previous":1150,"current":1600},{"label":"N19:M2","previous":1150,"current":1600},{"label":"N19:M3","previous":1000,"current":1350},{"label":"N19:M4","previous":1050,"current":1400}]);
+                                    createChart("speed_N20", "Speed Report", [{"label":"N20:M1","previous":300,"current":0},{"label":"N20:M2","previous":640,"current":0},{"label":"N20:M3","previous":510,"current":0},{"label":"N20:M4","previous":180,"current":0}]);
+                    createChart("efficiency_N20", "Efficiency Report", [{"label":"N20:M1","previous":218.770000000000010231815394945442676544189453125,"current":74.7699999999999960209606797434389591217041015625},{"label":"N20:M2","previous":306.720000000000027284841053187847137451171875,"current":83.969999999999998863131622783839702606201171875},{"label":"N20:M3","previous":178.93000000000000682121026329696178436279296875,"current":74.7699999999999960209606797434389591217041015625},{"label":"N20:M4","previous":286.6000000000000227373675443232059478759765625,"current":79.3700000000000045474735088646411895751953125}]);
+                    createChart("no_of_stoppage_N20", "Stoppage Report", [{"label":"N20:M1","previous":4,"current":8},{"label":"N20:M2","previous":3,"current":10},{"label":"N20:M3","previous":3,"current":6},{"label":"N20:M4","previous":4,"current":6}]);
+                    createChart("shift_pick_N20", "Total Pick Report", [{"label":"N20:M1","previous":800,"current":1200},{"label":"N20:M2","previous":1200,"current":1550},{"label":"N20:M3","previous":1000,"current":1250},{"label":"N20:M4","previous":950,"current":1300}]);
+                                    createChart("speed_N21", "Speed Report", [{"label":"N21:M1","previous":150,"current":150},{"label":"N21:M2","previous":320,"current":0},{"label":"N21:M3","previous":170,"current":0},{"label":"N21:M4","previous":180,"current":0}]);
+                    createChart("efficiency_N21", "Efficiency Report", [{"label":"N21:M1","previous":221.1399999999999863575794734060764312744140625,"current":0},{"label":"N21:M2","previous":315.32999999999998408384271897375583648681640625,"current":0},{"label":"N21:M3","previous":153.259999999999990905052982270717620849609375,"current":0},{"label":"N21:M4","previous":174.31999999999999317878973670303821563720703125,"current":0}]);
+                    createChart("no_of_stoppage_N21", "Stoppage Report", [{"label":"N21:M1","previous":6,"current":0},{"label":"N21:M2","previous":6,"current":0},{"label":"N21:M3","previous":4,"current":0},{"label":"N21:M4","previous":6,"current":0}]);
+                    createChart("shift_pick_N21", "Total Pick Report", [{"label":"N21:M1","previous":900,"current":1250},{"label":"N21:M2","previous":1150,"current":1550},{"label":"N21:M3","previous":650,"current":850},{"label":"N21:M4","previous":750,"current":1000}]);
+                                    createChart("speed_N22", "Speed Report", [{"label":"N22:M1","previous":450,"current":0},{"label":"N22:M2","previous":320,"current":0},{"label":"N22:M3","previous":510,"current":170},{"label":"N22:M4","previous":360,"current":0}]);
+                    createChart("efficiency_N22", "Efficiency Report", [{"label":"N22:M1","previous":290.05000000000001136868377216160297393798828125,"current":0},{"label":"N22:M2","previous":226.43999999999999772626324556767940521240234375,"current":0},{"label":"N22:M3","previous":323.3799999999999954525264911353588104248046875,"current":0},{"label":"N22:M4","previous":242.150000000000005684341886080801486968994140625,"current":0}]);
+                    createChart("no_of_stoppage_N22", "Stoppage Report", [{"label":"N22:M1","previous":3,"current":0},{"label":"N22:M2","previous":3,"current":0},{"label":"N22:M3","previous":3,"current":0},{"label":"N22:M4","previous":3,"current":0}]);
+                    createChart("shift_pick_N22", "Total Pick Report", [{"label":"N22:M1","previous":1200,"current":1550},{"label":"N22:M2","previous":600,"current":850},{"label":"N22:M3","previous":1300,"current":1650},{"label":"N22:M4","previous":850,"current":1150}]);
+                                    createChart("speed_N23", "Speed Report", [{"label":"N23:M1","previous":600,"current":0},{"label":"N23:M2","previous":320,"current":0},{"label":"N23:M3","previous":510,"current":0},{"label":"N23:M4","previous":360,"current":0}]);
+                    createChart("efficiency_N23", "Efficiency Report", [{"label":"N23:M1","previous":317.82999999999998408384271897375583648681640625,"current":83.969999999999998863131622783839702606201171875},{"label":"N23:M2","previous":240.990000000000009094947017729282379150390625,"current":0},{"label":"N23:M3","previous":253.270000000000010231815394945442676544189453125,"current":70.159999999999996589394868351519107818603515625},{"label":"N23:M4","previous":240.990000000000009094947017729282379150390625,"current":74.7699999999999960209606797434389591217041015625}]);
+                    createChart("no_of_stoppage_N23", "Stoppage Report", [{"label":"N23:M1","previous":4,"current":8},{"label":"N23:M2","previous":3,"current":0},{"label":"N23:M3","previous":6,"current":10},{"label":"N23:M4","previous":5,"current":12}]);
+                    createChart("shift_pick_N23", "Total Pick Report", [{"label":"N23:M1","previous":1050,"current":1450},{"label":"N23:M2","previous":1150,"current":1600},{"label":"N23:M3","previous":950,"current":1200},{"label":"N23:M4","previous":1050,"current":1400}]);
+                                    createChart("speed_N24", "Speed Report", [{"label":"N24:M1","previous":450,"current":0},{"label":"N24:M2","previous":320,"current":0},{"label":"N24:M3","previous":680,"current":0},{"label":"N24:M4","previous":180,"current":0}]);
+                    createChart("efficiency_N24", "Efficiency Report", [{"label":"N24:M1","previous":167.830000000000012505552149377763271331787109375,"current":74.7699999999999960209606797434389591217041015625},{"label":"N24:M2","previous":286.6000000000000227373675443232059478759765625,"current":79.3700000000000045474735088646411895751953125},{"label":"N24:M3","previous":234.5,"current":70.159999999999996589394868351519107818603515625},{"label":"N24:M4","previous":270.8799999999999954525264911353588104248046875,"current":74.7699999999999960209606797434389591217041015625}]);
+                    createChart("no_of_stoppage_N24", "Stoppage Report", [{"label":"N24:M1","previous":3,"current":8},{"label":"N24:M2","previous":5,"current":10},{"label":"N24:M3","previous":3,"current":6},{"label":"N24:M4","previous":5,"current":6}]);
+                    createChart("shift_pick_N24", "Total Pick Report", [{"label":"N24:M1","previous":850,"current":1150},{"label":"N24:M2","previous":1100,"current":1400},{"label":"N24:M3","previous":900,"current":1100},{"label":"N24:M4","previous":950,"current":1300}]);
+                                    createChart("speed_N25", "Speed Report", [{"label":"N25:M1","previous":600,"current":0},{"label":"N25:M2","previous":320,"current":0},{"label":"N25:M3","previous":340,"current":0},{"label":"N25:M4","previous":360,"current":0}]);
+                    createChart("efficiency_N25", "Efficiency Report", [{"label":"N25:M1","previous":231.05000000000001136868377216160297393798828125,"current":0},{"label":"N25:M2","previous":240.990000000000009094947017729282379150390625,"current":0},{"label":"N25:M3","previous":140.990000000000009094947017729282379150390625,"current":0},{"label":"N25:M4","previous":164.3799999999999954525264911353588104248046875,"current":0}]);
+                    createChart("no_of_stoppage_N25", "Stoppage Report", [{"label":"N25:M1","previous":5,"current":0},{"label":"N25:M2","previous":3,"current":0},{"label":"N25:M3","previous":5,"current":0},{"label":"N25:M4","previous":4,"current":0}]);
+                    createChart("shift_pick_N25", "Total Pick Report", [{"label":"N25:M1","previous":850,"current":1100},{"label":"N25:M2","previous":1000,"current":1450},{"label":"N25:M3","previous":650,"current":850},{"label":"N25:M4","previous":650,"current":850}]);
+                                    createChart("speed_N26", "Speed Report", [{"label":"N26:M1","previous":300,"current":0},{"label":"N26:M2","previous":320,"current":0},{"label":"N26:M3","previous":340,"current":0},{"label":"N26:M4","previous":540,"current":0}]);
+                    createChart("efficiency_N26", "Efficiency Report", [{"label":"N26:M1","previous":186.599999999999994315658113919198513031005859375,"current":0},{"label":"N26:M2","previous":259.76999999999998181010596454143524169921875,"current":0},{"label":"N26:M3","previous":301.16000000000002501110429875552654266357421875,"current":0},{"label":"N26:M4","previous":263.220000000000027284841053187847137451171875,"current":0}]);
+                    createChart("no_of_stoppage_N26", "Stoppage Report", [{"label":"N26:M1","previous":3,"current":0},{"label":"N26:M2","previous":2,"current":0},{"label":"N26:M3","previous":3,"current":0},{"label":"N26:M4","previous":4,"current":0}]);
+                    createChart("shift_pick_N26", "Total Pick Report", [{"label":"N26:M1","previous":1100,"current":1400},{"label":"N26:M2","previous":600,"current":850},{"label":"N26:M3","previous":1200,"current":1500},{"label":"N26:M4","previous":850,"current":1150}]);
+                                    createChart("speed_N27", "Speed Report", [{"label":"N27:M1","previous":600,"current":0},{"label":"N27:M2","previous":480,"current":0},{"label":"N27:M3","previous":340,"current":0},{"label":"N27:M4","previous":540,"current":180}]);
+                    createChart("efficiency_N27", "Efficiency Report", [{"label":"N27:M1","previous":273.3799999999999954525264911353588104248046875,"current":79.3700000000000045474735088646411895751953125},{"label":"N27:M2","previous":234.490000000000009094947017729282379150390625,"current":0},{"label":"N27:M3","previous":174.31999999999999317878973670303821563720703125,"current":65.56000000000000227373675443232059478759765625},{"label":"N27:M4","previous":264.3799999999999954525264911353588104248046875,"current":74.7699999999999960209606797434389591217041015625}]);
+                    createChart("no_of_stoppage_N27", "Stoppage Report", [{"label":"N27:M1","previous":3,"current":8},{"label":"N27:M2","previous":2,"current":0},{"label":"N27:M3","previous":5,"current":10},{"label":"N27:M4","previous":4,"current":10}]);
+                    createChart("shift_pick_N27", "Total Pick Report", [{"label":"N27:M1","previous":1100,"current":1400},{"label":"N27:M2","previous":1050,"current":1450},{"label":"N27:M3","previous":950,"current":1200},{"label":"N27:M4","previous":950,"current":1250}]);
+                                    createChart("speed_N28", "Speed Report", [{"label":"N28:M1","previous":300,"current":0},{"label":"N28:M2","previous":320,"current":0},{"label":"N28:M3","previous":340,"current":0},{"label":"N28:M4","previous":180,"current":0}]);
+                    createChart("efficiency_N28", "Efficiency Report", [{"label":"N28:M1","previous":167.830000000000012505552149377763271331787109375,"current":8.089999999999999857891452847979962825775146484375},{"label":"N28:M2","previous":259.76999999999998181010596454143524169921875,"current":9.25},{"label":"N28:M3","previous":201.159999999999996589394868351519107818603515625,"current":6.94000000000000039079850466805510222911834716796875},{"label":"N28:M4","previous":274.32999999999998408384271897375583648681640625,"current":9.25}]);
+                    createChart("no_of_stoppage_N28", "Stoppage Report", [{"label":"N28:M1","previous":2,"current":4},{"label":"N28:M2","previous":5,"current":5},{"label":"N28:M3","previous":3,"current":3},{"label":"N28:M4","previous":3,"current":2}]);
+                    createChart("shift_pick_N28", "Total Pick Report", [{"label":"N28:M1","previous":900,"current":1100},{"label":"N28:M2","previous":950,"current":1300},{"label":"N28:M3","previous":800,"current":950},{"label":"N28:M4","previous":800,"current":1200}]);
+                                    createChart("speed_N29", "Speed Report", [{"label":"N29:M1","previous":150,"current":0},{"label":"N29:M2","previous":480,"current":160},{"label":"N29:M3","previous":340,"current":0},{"label":"N29:M4","previous":0,"current":0}]);
+                    createChart("efficiency_N29", "Efficiency Report", [{"label":"N29:M1","previous":140.990000000000009094947017729282379150390625,"current":0},{"label":"N29:M2","previous":167.830000000000012505552149377763271331787109375,"current":66.6700000000000017053025658242404460906982421875},{"label":"N29:M3","previous":145.599999999999994315658113919198513031005859375,"current":0},{"label":"N29:M4","previous":137.539999999999992041921359486877918243408203125,"current":0}]);
+                    createChart("no_of_stoppage_N29", "Stoppage Report", [{"label":"N29:M1","previous":5,"current":0},{"label":"N29:M2","previous":2,"current":0},{"label":"N29:M3","previous":3,"current":0},{"label":"N29:M4","previous":5,"current":0}]);
+                    createChart("shift_pick_N29", "Total Pick Report", [{"label":"N29:M1","previous":850,"current":1100},{"label":"N29:M2","previous":1050,"current":1400},{"label":"N29:M3","previous":550,"current":700},{"label":"N29:M4","previous":650,"current":850}]);
+                                    createChart("speed_N30", "Speed Report", [{"label":"N30:M1","previous":150,"current":0},{"label":"N30:M2","previous":160,"current":0},{"label":"N30:M3","previous":340,"current":170},{"label":"N30:M4","previous":360,"current":0}]);
+                    createChart("efficiency_N30", "Efficiency Report", [{"label":"N30:M1","previous":185.43999999999999772626324556767940521240234375,"current":0},{"label":"N30:M2","previous":159.770000000000010231815394945442676544189453125,"current":0},{"label":"N30:M3","previous":278.93999999999999772626324556767940521240234375,"current":0},{"label":"N30:M4","previous":186.599999999999994315658113919198513031005859375,"current":0}]);
+                    createChart("no_of_stoppage_N30", "Stoppage Report", [{"label":"N30:M1","previous":3,"current":0},{"label":"N30:M2","previous":3,"current":0},{"label":"N30:M3","previous":3,"current":0},{"label":"N30:M4","previous":2,"current":0}]);
+                    createChart("shift_pick_N30", "Total Pick Report", [{"label":"N30:M1","previous":950,"current":1300},{"label":"N30:M2","previous":600,"current":850},{"label":"N30:M3","previous":1100,"current":1350},{"label":"N30:M4","previous":750,"current":1000}]);
+                                    createChart("speed_N31", "Speed Report", [{"label":"N31:M1","previous":300,"current":0},{"label":"N31:M2","previous":320,"current":0},{"label":"N31:M3","previous":340,"current":0},{"label":"N31:M4","previous":360,"current":0}]);
+                    createChart("efficiency_N31", "Efficiency Report", [{"label":"N31:M1","previous":175.479999999999989768184605054557323455810546875,"current":9.25},{"label":"N31:M2","previous":234.490000000000009094947017729282379150390625,"current":0},{"label":"N31:M3","previous":164.3799999999999954525264911353588104248046875,"current":6.94000000000000039079850466805510222911834716796875},{"label":"N31:M4","previous":218.770000000000010231815394945442676544189453125,"current":41.4200000000000017053025658242404460906982421875}]);
+                    createChart("no_of_stoppage_N31", "Stoppage Report", [{"label":"N31:M1","previous":4,"current":4},{"label":"N31:M2","previous":2,"current":0},{"label":"N31:M3","previous":3,"current":4},{"label":"N31:M4","previous":4,"current":6}]);
+                    createChart("shift_pick_N31", "Total Pick Report", [{"label":"N31:M1","previous":1000,"current":1250},{"label":"N31:M2","previous":1100,"current":1400},{"label":"N31:M3","previous":850,"current":1050},{"label":"N31:M4","previous":950,"current":1250}]);
+                                    createChart("speed_N32", "Speed Report", [{"label":"N32:M1","previous":150,"current":0},{"label":"N32:M2","previous":320,"current":0},{"label":"N32:M3","previous":340,"current":0},{"label":"N32:M4","previous":360,"current":0}]);
+                    createChart("efficiency_N32", "Efficiency Report", [{"label":"N32:M1","previous":142.150000000000005684341886080801486968994140625,"current":0},{"label":"N32:M2","previous":218.770000000000010231815394945442676544189453125,"current":0},{"label":"N32:M3","previous":186.599999999999994315658113919198513031005859375,"current":0},{"label":"N32:M4","previous":278.93999999999999772626324556767940521240234375,"current":0}]);
+                    createChart("no_of_stoppage_N32", "Stoppage Report", [{"label":"N32:M1","previous":3,"current":0},{"label":"N32:M2","previous":2,"current":0},{"label":"N32:M3","previous":3,"current":0},{"label":"N32:M4","previous":3,"current":0}]);
+                    createChart("shift_pick_N32", "Total Pick Report", [{"label":"N32:M1","previous":800,"current":950},{"label":"N32:M2","previous":800,"current":1200},{"label":"N32:M3","previous":700,"current":800},{"label":"N32:M4","previous":850,"current":1150}]);
+                
+                setTimeout(() => {
+                    // generatePDF();
+                }, 5000);
+            };
+
+            function createChart(containerId, title, data) {
+                const preName = "Yesterday 25 Dec 2024";
+                const curName = "Today 26 Dec 2024";
+                const lastWeekDataPoints = data.map(item => ({
+                    label: item.label,
+                    y: item.previous
+                }));
+                const currentWeekDataPoints = data.map(item => ({
+                    label: item.label,
+                    y: item.current
+                }));
+
+                var chart = new CanvasJS.Chart(containerId, {
+                    animationEnabled: true,
+                    title: {
+                        text: title
+                    },
+                    axisY: {
+                        title: "",
+                        titleFontColor: "#4F81BC",
+                        lineColor: "#4F81BC",
+                        labelFontColor: "#4F81BC",
+                        tickColor: "#4F81BC"
+                    },
+                    toolTip: {
+                        shared: true
+                    },
+                    legend: {
+                        cursor: "pointer",
+                        itemclick: toggleDataSeries
+                    },
+                    data: [{
+                            type: "column",
+                            name: preName,
+                            legendText: preName,
+                            showInLegend: true,
+                            indexLabel: "{y}",
+                            dataPoints: lastWeekDataPoints
+                        },
+                        {
+                            type: "column",
+                            name: curName,
+                            legendText: curName,
+                            showInLegend: true,
+                            indexLabel: "{y}",
+                            dataPoints: currentWeekDataPoints
+                        }
+                    ]
+                });
+                chart.render();
+            }
+
+            function toggleDataSeries(e) {
+                if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+                    e.dataSeries.visible = false;
+                } else {
+                    e.dataSeries.visible = true;
+                }
+                e.chart.render();
+            }
+
+            function generatePDF() {
+                const element = document.body;
+                const options = {
+                    margin: [10, 10, 10, 10],
+                    filename: "chart-report.pdf",
+                    image: {
+                        type: "jpeg",
+                        quality: 0.98
+                    },
+                    html2canvas: {
+                        scale: 2
+                    },
+                    jsPDF: {
+                        unit: "mm",
+                        format: "a4",
+                        orientation: "portrait"
+                    },
+                };
+                html2pdf().set(options).from(element).save();
+            }
+
+            $(window).on('load', function () {
+                $('.canvasjs-chart-credit').remove();
+            });
+        </script>
+    </body>
+</html>
