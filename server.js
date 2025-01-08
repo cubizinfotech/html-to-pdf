@@ -82,6 +82,10 @@ app.delete('/delete-pdf', (req, res) => {
     }
 });
 
+app.get('/', function(req, res) {
+    return res.send("welcome user");
+});
+
 // Serve PDFs
 app.use('/pdfs', express.static(pdfDirectory));
 
