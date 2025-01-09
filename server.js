@@ -7,23 +7,25 @@ const { v4: uuidv4 } = require("uuid");
 
 const app = express();
 app.use(cors());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.json()); // For parsing application/json
+app.use(express.urlencoded({ extended: true })); // For parsing application/x-www-form-urlencoded
 const PORT = 3000;
-
-// Middleware to parse JSON
-app.use(express.json());
 
 // Directory to store PDFs
 const pdfDirectory = path.join(__dirname, "pdfs");
+
+// Create the directory if it doesn't exist
 if (!fs.existsSync(pdfDirectory)) {
   fs.mkdirSync(pdfDirectory);
+  console.log("PDF directory created at:", pdfDirectory);
 }
 
-// First API: Convert HTML to PDF
+// API: Convert HTML to PDF
 app.post("/html-to-pdf", async (req, res) => {
   const { url } = req.body;
 
   if (!url) {
+    console.error("No URL provided in the request.");
     return res
       .status(400)
       .json({ status: "error", message: "HTML file URL is required." });
@@ -32,77 +34,58 @@ app.post("/html-to-pdf", async (req, res) => {
   const uniqueName = `${uuidv4()}.pdf`;
   const pdfPath = path.join(pdfDirectory, uniqueName);
 
+  console.log(`Request to convert HTML to PDF for URL: ${url}`);
+
   try {
-    // Launch Puppeteer
+    // Launch Puppeteer browser instance
+    console.log("Launching Puppeteer browser...");
     const browser = await puppeteer.launch({
-      headless: true,
-      args: ["--no-sandbox", "--disable-setuid-sandbox"],
+      headless: true,  // Set to true to run in headless mode
+      args: ["--no-sandbox", "--disable-setuid-sandbox"],  // Required for some environments like Docker
     });
 
     const page = await browser.newPage();
+    console.log("Navigating to the provided URL...");
 
-    // Load the HTML file
-    await page.goto(url, { waitUntil: "networkidle0", timeout: 60000 });
+    // Try to open the page, increase the timeout to 2 minutes
+    await page.goto(url, { waitUntil: "networkidle0", timeout: 180000 });
+    console.log("Page loaded successfully!");
 
-    // Generate the PDF
-    await page.pdf({
-      path: pdfPath,
-      format: "A4",
-      printBackground: true,
-    });
+    // Generate the PDF and save it
+    await page.pdf({ path: pdfPath, format: "A4", printBackground: true });
+    console.log(`PDF generated successfully and saved to: ${pdfPath}`);
 
     await browser.close();
+    console.log("Browser closed successfully.");
 
     // Return the file URL
     const fileUrl = `${req.protocol}://${req.get("host")}/pdfs/${uniqueName}`;
     return res.json({ status: "success", pdfUrl: fileUrl });
   } catch (error) {
     console.error("Error generating PDF:", error);
-    return res
-      .status(500)
-      .json({ status: "error", message: "Failed to generate PDF." });
-  }
-});
 
-// Second API: Delete PDF
-app.delete("/delete-pdf", (req, res) => {
-  const { filename } = req.body;
+    // Handle specific timeout error or other errors
+    if (error.name === 'TimeoutError') {
+      return res.status(500).json({
+        status: "error",
+        message: "Navigation timeout exceeded. The page took too long to load."
+      });
+    }
 
-  if (!filename) {
-    return res
-      .status(400)
-      .json({ status: "error", message: "Filename is required." });
-  }
-
-  const filePath = path.join(pdfDirectory, filename);
-
-  if (!fs.existsSync(filePath)) {
-    return res
-      .status(404)
-      .json({ status: "error", message: "File not found." });
-  }
-
-  try {
-    fs.unlinkSync(filePath);
-    return res.json({
-      status: "success",
-      message: "File deleted successfully.",
+    return res.status(500).json({
+      status: "error",
+      message: "Failed to generate PDF due to an unexpected error."
     });
-  } catch (error) {
-    console.error("Error deleting file:", error);
-    return res
-      .status(500)
-      .json({ status: "error", message: "Failed to delete file." });
   }
 });
+
+// Serve PDFs (static files)
+app.use("/pdfs", express.static(pdfDirectory));
 
 // Default route
 app.get("/", (req, res) => {
-  return res.send("Welcome User");
+  res.send("Welcome to the HTML to PDF converter API!");
 });
-
-// Serve PDFs
-app.use("/pdfs", express.static(pdfDirectory));
 
 // Start the server
 app.listen(PORT, () => {
