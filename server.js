@@ -44,6 +44,61 @@ app.post("/html-to-pdf", async (req, res) => {
     const page = await browser.newPage();
     console.log("Navigating to the provided URL...");
 
+    // Log additional info if the URL is problematic
+    page.on('console', msg => console.log('PAGE LOG:', msg.text()));
+
+    // Load the HTML file with adjusted timeout and waitUntil
+    console.log(`Loading URL: ${url}`);
+    await page.goto(url, { 
+      waitUntil: "load", // Wait until the DOM is fully loaded
+      timeout: 600000  // Set timeout to 10 minutes for slow pages
+    });
+
+    console.log("Page loaded successfully!");
+
+    // Generate the PDF
+    await page.pdf({
+      path: pdfPath,
+      format: "A4",
+      printBackground: true,
+    });
+    console.log(`PDF generated successfully and saved to: ${pdfPath}`);
+
+    await browser.close();
+    console.log("Browser closed successfully.");
+
+    // Return the file URL
+    const fileUrl = `${req.protocol}://${req.get("host")}/pdfs/${uniqueName}`;
+    return res.json({ status: "success", pdfUrl: fileUrl });
+
+  } catch (error) {
+    console.error("Error generating PDF:", error);
+
+    // Handle specific timeout error or other errors
+    if (error.name === 'TimeoutError') {
+      return res.status(500).json({
+        status: "error",
+        message: "Navigation timeout exceeded. The page took too long to load."
+      });
+    }
+
+    return res.status(500).json({
+      status: "error",
+      message: "Failed to generate PDF due to an unexpected error."
+    });
+  }
+  /*
+  try {
+    // Launch Puppeteer
+    console.log("Launching Puppeteer browser...");
+    const browser = await puppeteer.launch({
+      headless: true,
+      args: ["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage"],
+    });
+
+    const page = await browser.newPage();
+    console.log("Navigating to the provided URL...");
+
     // Load the HTML file
     await page.goto(url, { waitUntil: "networkidle0", timeout: 300000 });
     console.log("Page loaded successfully!");
@@ -79,6 +134,7 @@ app.post("/html-to-pdf", async (req, res) => {
       message: "Failed to generate PDF due to an unexpected error."
     });
   }
+  */
 });
 
 // Second API: Delete PDF
