@@ -33,18 +33,12 @@ app.post("/html-to-pdf", async (req, res) => {
   const pdfPath = path.join(pdfDirectory, uniqueName);
 
   try {
-    // const browser = await puppeteer.launch({
-    //   headless: true,
-    //   executablePath:
-    //     "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe", // Adjust the path if necessary
-    //   args: ["--no-sandbox", "--disable-setuid-sandbox"],
-    // });
+    // Launch Puppeteer
     const browser = await puppeteer.launch({
-        headless: true,
-        args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      headless: true,
+      args: ["--no-sandbox", "--disable-setuid-sandbox"],
     });
-    
-    
+
     const page = await browser.newPage();
 
     // Load the HTML file
@@ -102,8 +96,9 @@ app.delete("/delete-pdf", (req, res) => {
   }
 });
 
-app.get("/", function (req, res) {
-  return res.send("welcome user");
+// Default route
+app.get("/", (req, res) => {
+  return res.send("Welcome User");
 });
 
 // Serve PDFs
