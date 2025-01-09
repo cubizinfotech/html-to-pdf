@@ -7,20 +7,19 @@ const { v4: uuidv4 } = require("uuid");
 
 const app = express();
 app.use(cors());
-app.use(express.json()); // For parsing application/json
-app.use(express.urlencoded({ extended: true })); // For parsing application/x-www-form-urlencoded
+app.use(express.urlencoded({ extended: true }));
 const PORT = 3000;
+
+// Middleware to parse JSON
+app.use(express.json());
 
 // Directory to store PDFs
 const pdfDirectory = path.join(__dirname, "pdfs");
-
-// Create the directory if it doesn't exist
 if (!fs.existsSync(pdfDirectory)) {
   fs.mkdirSync(pdfDirectory);
-  console.log("PDF directory created at:", pdfDirectory);
 }
 
-// API: Convert HTML to PDF
+// First API: Convert HTML to PDF
 app.post("/html-to-pdf", async (req, res) => {
   const { url } = req.body;
 
@@ -34,25 +33,27 @@ app.post("/html-to-pdf", async (req, res) => {
   const uniqueName = `${uuidv4()}.pdf`;
   const pdfPath = path.join(pdfDirectory, uniqueName);
 
-  console.log(`Request to convert HTML to PDF for URL: ${url}`);
-
   try {
-    // Launch Puppeteer browser instance
+    // Launch Puppeteer
     console.log("Launching Puppeteer browser...");
     const browser = await puppeteer.launch({
-      headless: true,  // Set to true to run in headless mode
-      args: ["--no-sandbox", "--disable-setuid-sandbox"],  // Required for some environments like Docker
+      headless: true,
+      args: ["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage"],
     });
 
     const page = await browser.newPage();
     console.log("Navigating to the provided URL...");
 
-    // Try to open the page, increase the timeout to 2 minutes
-    await page.goto(url, { waitUntil: "networkidle0", timeout: 180000 });
+    // Load the HTML file
+    await page.goto(url, { waitUntil: "networkidle0", timeout: 300000 });
     console.log("Page loaded successfully!");
 
-    // Generate the PDF and save it
-    await page.pdf({ path: pdfPath, format: "A4", printBackground: true });
+    // Generate the PDF
+    await page.pdf({
+      path: pdfPath,
+      format: "A4",
+      printBackground: true,
+    });
     console.log(`PDF generated successfully and saved to: ${pdfPath}`);
 
     await browser.close();
@@ -61,6 +62,7 @@ app.post("/html-to-pdf", async (req, res) => {
     // Return the file URL
     const fileUrl = `${req.protocol}://${req.get("host")}/pdfs/${uniqueName}`;
     return res.json({ status: "success", pdfUrl: fileUrl });
+
   } catch (error) {
     console.error("Error generating PDF:", error);
 
@@ -79,7 +81,39 @@ app.post("/html-to-pdf", async (req, res) => {
   }
 });
 
-// Serve PDFs (static files)
+// Second API: Delete PDF
+app.delete("/delete-pdf", (req, res) => {
+  const { filename } = req.body;
+
+  if (!filename) {
+    return res
+      .status(400)
+      .json({ status: "error", message: "Filename is required." });
+  }
+
+  const filePath = path.join(pdfDirectory, filename);
+
+  if (!fs.existsSync(filePath)) {
+    return res
+      .status(404)
+      .json({ status: "error", message: "File not found." });
+  }
+
+  try {
+    fs.unlinkSync(filePath);
+    return res.json({
+      status: "success",
+      message: "File deleted successfully.",
+    });
+  } catch (error) {
+    console.error("Error deleting file:", error);
+    return res
+      .status(500)
+      .json({ status: "error", message: "Failed to delete file." });
+  }
+});
+
+// Serve PDFs
 app.use("/pdfs", express.static(pdfDirectory));
 
 // Default route
@@ -89,5 +123,5 @@ app.get("/", (req, res) => {
 
 // Start the server
 app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`Server is running on port:${PORT}`);
 });
