@@ -36,6 +36,7 @@ app.post("/html-to-pdf", async (req, res) => {
     // Launch Puppeteer
     const browser = await puppeteer.launch({
       headless: true,
+      executablePath: "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe", // Correct path for Windows
       args: ["--no-sandbox", "--disable-setuid-sandbox"],
     });
 
